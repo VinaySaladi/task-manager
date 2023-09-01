@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Alert } from "antd";
 
 const Home = () => {
-  const [count, setCount] = useState(0);
   const [task, setTask] = useState({
     task: "",
     time: "",
