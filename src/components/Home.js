@@ -96,8 +96,8 @@ const Home = () => {
         <h2 className="text-center mt-4 text-2xl font-bold underline text-[#7fd1ae]">
           Task Management
         </h2>
-        <div className="flex justify-between mx-32 mt-8 gap-10">
-          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full bg-[#f2ecff]">
+        <div className="md:flex justify-between mx-4 md:mx-32 mt-8 gap-4">
+          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full md:w-1/3 bg-[#f2ecff]">
             <h5 className="text-md font-bold text-center text-[#324b4c]">
               Total Tasks
             </h5>
@@ -105,7 +105,7 @@ const Home = () => {
               {totalTasks}
             </h1>
           </div>
-          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full bg-[#f2ecff]">
+          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full md:w-1/3 bg-[#f2ecff]">
             <h5 className="text-md font-bold text-center text-[#324b4c]">
               Total Days
             </h5>
@@ -113,7 +113,7 @@ const Home = () => {
               {totalDays.toFixed(2)}
             </h1>
           </div>
-          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full bg-[#f2ecff]">
+          <div className="border-2 border-solid border-black rounded-xl border-[#dadde2] p-4 w-full md:w-1/3 bg-[#f2ecff]">
             <h5 className="text-md font-bold text-center text-[#324b4c]">
               Total Hours
             </h5>
@@ -123,7 +123,7 @@ const Home = () => {
           </div>
         </div>
         <div className="mt-4 flex items-center justify-center">
-          <div className="w-fit self-center text-center">
+          <div className="w-full md:w-auto self-center text-center">
             <Alert
               className="self-center text-[#009063]"
               message="Note: 8Hrs is equal to 1 Day & Max time for a task is 24Hrs"
@@ -132,10 +132,10 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="border-2 border-solid border-black mt-8 gap-5 bg-[#E9EDC9] rounded-xl p-8 mx-72">
+        <div className="border-2 border-solid border-black mt-8 gap-5 bg-[#E9EDC9] rounded-xl p-4 md:p-8 mx-4 md:mx-72">
           <div className="w-full self-center text-center">
             <input
-              className="shadow appearance-none border rounded w-2/4 mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+              className="shadow appearance-none border rounded w-full md:w-2/4 mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
               placeholder="Enter Task Title"
               type="text"
               onChange={handleAdd}
@@ -143,7 +143,7 @@ const Home = () => {
               name="task"
             />
             <input
-              className="shadow block appearance-none border rounded w-1/3 mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center mt-4"
+              className="shadow block appearance-none border rounded w-full md:w-1/3 mx-auto py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center mt-4"
               placeholder="Enter Time Required (in Hrs)"
               type="text"
               onChange={handleAdd}
@@ -159,41 +159,39 @@ const Home = () => {
           </div>
         </div>
 
-        <div>
-          <div className="m-4">
-            <h3 className="text-left font-bold text-[#652662]">Todo List</h3>
-            <table className="min-w-full border text-center ">
-              <thead>
-                <tr>
-                  <th className="w-[60%] border text-white bg-[#656568] p-2">
-                    Task Title
-                  </th>
-                  <th className="w-[20%] border text-white bg-[#656568] p-2">
-                    Time Required(in Hrs)
-                  </th>
-                  <th className="w-[20%] border text-white bg-[#656568] p-2">
-                    Actions
-                  </th>
+        <div className="m-4">
+          <h3 className="text-left font-bold text-[#652662]">Todo List</h3>
+          <table className="min-w-full border text-center">
+            <thead>
+              <tr>
+                <th className="w-[60%] md:w-[50%] border text-white bg-[#656568] p-2">
+                  Task Title
+                </th>
+                <th className="w-[20%] md:w-[25%] border text-white bg-[#656568] p-2">
+                  Time Required (in Hrs)
+                </th>
+                <th className="w-[20%] md:w-[25%] border text-white bg-[#656568] p-2">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {taskList.map((item, index) => (
+                <tr key={index}>
+                  <td className="w-[60%] md:w-[50%] border p-1">{item.task}</td>
+                  <td className="w-[20%] md:w-[25%] border p-1">{item.time}</td>
+                  <td className="w-[20%] md:w-[25%] border p-1">
+                    <button
+                      className="text-red-500 hover:text-red-700 font-bolds"
+                      onClick={() => handleDelete(index)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {taskList.map((item, index) => (
-                  <tr key={index}>
-                    <td className="w-[60%] border p-1">{item.task}</td>
-                    <td className="w-[20%] border p-1">{item.time}</td>
-                    <td className="w-[20%] border p-1">
-                      <button
-                        className="text-red-500 hover:text-red-700 font-bolds"
-                        onClick={() => handleDelete(index)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
